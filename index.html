@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Estimate the percentage of a panel that is open, including a solid border around the artwork.">
+  <title>SVG open-area calculator | Tint &amp; Screen</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#controls">Skip to controls</a>
+  <header class="shell bar"><img src="tint-and-screen.svg" alt="Tint &amp; Screen" width="190" height="32"><a href="https://tintandscreen.co.za/advice/architectural-screen-pattern-density/">Screen pattern density guide</a></header>
+  <main>
+    <div class="intro"><div class="shell"><h1>SVG open-area calculator</h1><p>Estimate the percentage of a panel that is open, including a solid border around the artwork.</p><a class="jump" href="#result">View result</a></div></div>
+    <noscript><p class="shell help">Enable JavaScript to use this offline tool.</p></noscript>
+    <div class="shell workspace">
+      <form id="controls" tabindex="-1" autocomplete="off" onsubmit="return false">
+        <h2>Artwork and border</h2><p class="help">Use a filled, two-tone drawing. The artwork is fitted proportionally inside the border. Unused margins stay solid.</p>
+        <div class="fields">
+          <label class="full">SVG artwork<input type="file" id="art" accept=".svg,image/svg+xml" ></label>
+          <label class="full">Openings are<select id="mode"><option value="dark">Dark areas</option><option value="light">Light or transparent areas</option></select></label>
+          <label>Panel width (mm)<input id="width" type="number" value="1000" min="1" max="10000" step="1" required></label>
+          <label>Panel height (mm)<input id="height" type="number" value="1000" min="1" max="10000" step="1" required></label>
+          <label>Solid border (mm)<input id="border" type="number" value="0" min="0" max="1000" step="1" required></label>
+        </div>
+        <div class="actions"><button type="button" id="sample" class="secondary">Use half-open sample</button></div>
+        <p class="message" id="message" role="status"></p>
+      </form>
+      <section class="result" id="result" tabindex="-1" aria-labelledby="result-title">
+        <h2 id="result-title">Estimated open area</h2>
+        <p class="lead" id="summary" aria-live="polite"></p><canvas id="view" width="900" height="430" aria-label="Map of open and solid panel area"></canvas><ul class="rows" id="details"></ul><p class="note">Blue shows openings. The calculation samples the SVG on white and includes the full solid border in the denominator.</p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
